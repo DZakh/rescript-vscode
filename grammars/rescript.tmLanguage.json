@@ -62,10 +62,6 @@
           "name": "punctuation.definition.keyword"
         },
         {
-          "match": ";",
-          "name": "punctuation.terminator"
-        },
-        {
           "match": "\\.",
           "name": "punctuation.accessor"
         },
@@ -161,6 +157,10 @@
           },
           "patterns": [
             {
+              "name": "constant.character.escape",
+              "match": "\\\\."
+            },
+            {
               "name": "meta.template.expression",
               "begin": "\\$\\{",
               "beginCaptures": {
@@ -176,16 +176,13 @@
               },
               "patterns": [
                 {
-                  "match": "[a-z_][0-9a-zA-Z_]*"
+                  "include": "#commentLine"
                 },
                 {
-                  "include": "#operator"
+                  "include": "#commentBlock"
                 },
                 {
-                  "include": "#punctuations"
-                },
-                {
-                  "include": "#string"
+                  "include": "#expression"
                 }
               ]
             }
@@ -206,6 +203,37 @@
         {
           "match": "'[\\x00-\\x7F]'",
           "name": "string.quoted.single"
+        }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        {
+          "include": "#keyword"
+        },
+        {
+          "include": "#constant"
+        },
+        {
+          "include": "#function"
+        },
+        {
+          "include": "#operator"
+        },
+        {
+          "include": "#bracketAccess"
+        },
+        {
+          "include": "#punctuations"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#character"
         }
       ]
     },
